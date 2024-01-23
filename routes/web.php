@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', ['title' => 'mahasiswa sistem informasi']);
-});
+// Route::get('/', function () {
+//     return view('welcome', ['title' => 'mahasiswa sistem informasi']);
+// });
 
 Route::get('/latihan', function () {
     return view('latihan');
@@ -35,4 +35,9 @@ Route::get('/study/{value?}', function ($value) {
     } else {
         return 'No return value';
     }
+});
+
+
+Route::get('/', function() {
+    return view('index');
 });
