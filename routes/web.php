@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome', ['title' => 'mahasiswa sistem informasi']);
 // });
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{uri}', function($uri) {
+Route::get('/{uri}', function ($uri) {
     if ($uri == 'dashboard') {
         return view('index');
     } else if ($uri != 'dashboard') {
@@ -32,20 +32,18 @@ Route::get('/{uri}', function($uri) {
     }
 });
 
-Route::get('kategori/semua', function() {
+Route::get('kategori/semua', function () {
     $kategori = Kategori::all();
-    foreach ($kategori as $data) {
-        echo $data->id.". ".$data->nama_kategori."<br>";
-    }
+    return view('data', ['value' => $kategori]);
 });
 
-Route::get('kategori/tambah', function() {
+Route::get('kategori/tambah', function () {
     Kategori::create([
         "nama_kategori" => "Pakaian Baru",
         "deskripsi" => "Semua jenis pakaian baru"
     ]);
 });
-Route::get('kategori/tambah/{value}', function($value) {
+Route::get('kategori/tambah/{value}', function ($value) {
     $query = explode('_', $value);
     Kategori::create([
         "nama_kategori" => $query[0],
@@ -53,6 +51,17 @@ Route::get('kategori/tambah/{value}', function($value) {
     ]);
 });
 
-Route::get("/tes/{value}_{v2}", function($value, $v2) {
+Route::get("/tes/{value}_{v2}", function ($value, $v2) {
     return "$value $v2";
+});
+
+Route::get('kategori/update/{id}', function ($id) {
+    Kategori::find($id)->update([
+        'nama_kategori' => 'Pakaian Anak',
+        'deksripsi' => 'Semua jenis pakaian anak'
+    ]);
+});
+
+Route::get('kategori/hapus/{id}', function ($id) {
+    Kategori::find($id)->delete();
 });
