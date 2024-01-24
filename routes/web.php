@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Kategori;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{uri}', function ($uri) {
+Route::get('feature/{uri}', function ($uri) {
     if ($uri == 'dashboard') {
         return view('index');
     } else if ($uri != 'dashboard') {
@@ -64,4 +65,9 @@ Route::get('kategori/update/{id}', function ($id) {
 
 Route::get('kategori/hapus/{id}', function ($id) {
     Kategori::find($id)->delete();
+});
+
+Route::get('/mahasiswa', function () {
+    $mhs = Mahasiswa::all();
+    return view('data', ['mhs' => $mhs]);
 });
