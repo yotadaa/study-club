@@ -74,16 +74,15 @@ Route::get('/mahasiswa', function () {
 
 
 Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function($nim, $nama, $desk, $kelas) {
-//     return "
-// <script>
-//     alert('$nim, $nama, $kelas,$desk');
-// </script>
-    // ";
+    $existingMahasiswa = Mahasiswa::where('nim', $nim)->first();
+    if ($existingMahasiswa) {
+        return view('mahasiswaExists');
+    }
         Mahasiswa::create([
         "nim" => $nim,
         "nama" => $nama,
-        "des" => $kelas,
-        "kelas" => "R-003"
+        "des" => $desk,
+        "kelas" => $kelas
     ]);
    return "
 <script>
