@@ -71,3 +71,33 @@ Route::get('/mahasiswa', function () {
     $mhs = Mahasiswa::all();
     return view('data', ['mhs' => $mhs]);
 });
+
+
+Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function($nim, $nama, $desk, $kelas) {
+//     return "
+// <script>
+//     alert('$nim, $nama, $kelas,$desk');
+// </script>
+    // ";
+        Mahasiswa::create([
+        "nim" => $nim,
+        "nama" => $nama,
+        "des" => $kelas,
+        "kelas" => "R-003"
+    ]);
+   return "
+<script>
+    window.location.href = '/mahasiswa';
+</script>
+   ";
+});
+
+
+Route::get('/mahasiswa/hapus/{id}', function($id){
+    return "
+<script>
+    alert('$id');
+    window.location.href = '/mahasiswa';
+</script>
+    ";
+});

@@ -1,70 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Semua Kategori</title>
 </head>
+
 <body class=''>
+    @include('modal')
     <div class='h-screen flex flex-col p-10 items-center w-full'>
         <h1 class='text-3xl font-semibold mb-0'>
             Daftar Mahasiswa
         </h1>
-        <form>
+        <form id='formulir' method='GET'>
             <table class="mb-0 mt-10">
-                <tr class="bg-gray-200">
+                <tr class="rounded-md">
                     <td>
-                        <input
-                            placeholder='NIM'
-                            type='text'
-                            class='border-none focus:outline-none bg-none outline-none'
-                            required
-                        >
+                        <input id='nim' placeholder='NIM' type='text'
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
-                        <input
-                            placeholder='Nama Mahasiswa'
-                            type='text'
-                            class='border-none focus:outline-none'
-                            required
-                        >
+                        <input id='nama' placeholder='Nama Mahasiswa' type='text'
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
-                        <input
-                            placeholder='Deskripsi'
-                            type='text'
-                            class='border-none focus:outline-none'
-                            required
-                        >
+                        <input id='desk' placeholder='Deskripsi' type='text'
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
-                        <button class="p-2 flex items-center justify-center bg-emerald-500 shadow-md rounded-md px-4">Tambah</button>
+                        <input id='kelas' placeholder='Kelas' type='text'
+                            class='border-none w-20 bg-gray-100 rounded-sm focus:outline-none bg-none outline-none'
+                            required>
+                    </td>
+                    <td>
+                        <button class="p-2 flex items-center justify-center bg-emerald-500 shadow-md rounded-md px-4"
+                            onclick='submitForm()'>
+                            Tambah
+                        </button>
                     </td>
                 </tr>
             </table>
         </form>
         <table class="mt-0">
-            @foreach($mhs as $data)
-                @if( $loop->first or $loop->iteration  >= 2 )
+            @foreach ($mhs as $data)
+                @if ($loop->first or $loop->iteration >= 2)
                     @if ($loop->iteration % 2 != 0)
-                        <tr class="mt-0 bg-blue-500 rounded-full hover:cursor-pointer text-white w-10 h-10 mb-10 hover:opacity-80">
+                        <tr
+                            class="mt-0 bg-blue-500 rounded-full hover:cursor-pointer text-white w-10 h-10 mb-10 hover:opacity-80">
                             <td>&times;</td>
-                            <td class="p-2 bg-emerald-500">
-                                {{$data->nim}}
+                            <td id='' class="p-2 bg-emerald-500">
+                                {{ $data->nim }}
                             </td>
-                            <td class='p-2' >{{$data->nama}}</td>
-                            <td class='p-2 bg-red-700 '>{{$data->des}}</td>
+                            <td class='p-2'>{{ $data->nama }}</td>
+                            <td class='p-2 bg-red-700 '>{{ $data->des }}</td>
+                            <td class='p-2 bg-blue-500 '>{{ $data->kelas }}</td>
+                            <td class='bg-white'>&nbsp;</td>
+                            <td
+                                class='p-2 bg-yellow-300 w-20 text-center text-black hover:opacity-100 hover:bg-yellow-500'>
+                                Ubah</td>
+                            <td class='p-2 bg-red-500 w-20 text-center  hover:opacity-100 hover:bg-red-700'
+                                onclick='hapus("{{ $data->id }}")'>Hapus
+                            </td>
                         </tr>
                     @else
-                        <tr class="mt-0 bg-blue-600 rounded-full hover:cursor-pointer text-white w-10 h-10 mb-10 hover:opacity-80">
+                        <tr
+                            class="mt-0 bg-blue-600 rounded-full hover:cursor-pointer text-white w-10 h-10 mb-10 hover:opacity-80">
                             <td>&times;</td>
                             <td class="p-2 bg-emerald-600">
-                                {{$data->nim}}
+                                {{ $data->nim }}
                             </td>
-                            <td class='p-2' >{{$data->nama}}</td>
-                            <td class='p-2 bg-red-800 '>{{$data->des}}</td>
+                            <td class='p-2'>{{ $data->nama }}</td>
+                            <td class='p-2 bg-red-800 '>{{ $data->des }}</td>
+                            <td class='p-2 bg-blue-600 '>{{ $data->kelas }}</td>
+                            <td class='bg-white'>&nbsp;</td>
+                            <td
+                                class='p-2 bg-yellow-400 w-20 text-center text-black hover:opacity-100 hover:bg-yellow-500'>
+                                Ubah</td>
+                            <td class='p-2 bg-red-600 w-20 text-center hover:opacity-100 hover:bg-red-700'
+                                onclick='hapus("{{ $data->id }}")'>Hapus</td>
                         </tr>
                     @endif
                     <br>
@@ -72,5 +88,31 @@
             @endforeach
         </table>
     </div>
+    <script>
+        function hapus(id) {
+            window.location.href = `/mahasiswa/hapus/${id}`
+        }
+
+        const alertPopUp = document.querySelector('#myModal');
+        alertPopUp.style.display = 'none';
+
+        function submitForm(mhs) {
+            event.preventDefault();
+            const nim = document.querySelector('#nim');
+            const nama = document.querySelector('#nama');
+            const desk = document.querySelector('#desk');
+            const kelas = document.querySelector('#kelas');
+            const passed = (kelas.value.length > 0 && nim.value.length > 0) && (nama.value.length > 0) && (desk.value
+                .length > 0);
+            if (passed) {
+                // alert(`${nim.value} ${nama.value} ${desk.value}`);
+                // document.querySelector("#formulir").action = `/tambah/${nim}_${nama}_${desk}`;
+                window.location.href = `/mahasiswa/tambah/${nim.value}_${nama.value}_${desk.value}_${kelas.value}`;
+            } else {
+                openModal();
+            }
+        }
+    </script>
 </body>
+
 </html>
