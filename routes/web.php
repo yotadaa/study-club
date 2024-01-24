@@ -17,27 +17,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome', ['title' => 'mahasiswa sistem informasi']);
 // });
 
-Route::get('/latihan', function () {
-    return view('latihan');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/latihan/{value}', function ($value) {
-    return view('latihan', ["value" => $value]);
-});
-
-Route::get('/study/{value?}', function ($value) {
-    if ($value) {
-        return 'The value is $value';
-    } else {
-        return 'No return value';
-    }
-});
-
-
 Route::get('/', function() {
     return view('index');
 });
