@@ -13,7 +13,7 @@ class MahasiswaControllers extends Controller
     public function index()
     {
         $mhs = Mahasiswa::all();
-        return view('data', ['mhs' => $mhs]);
+        return view('mhs.index', ['mhs' => $mhs]);
     }
 
     /**
@@ -53,7 +53,13 @@ class MahasiswaControllers extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Mahasiswa::find($id)->update([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'des' => $request->des
+        ]);
+        return redirect()->route('mahasiswa.index');
     }
 
     /**
@@ -62,5 +68,7 @@ class MahasiswaControllers extends Controller
     public function destroy(string $id)
     {
         //
+        Mahasiswa::find($id)->delete();
+        return redirect()->route('mahasiswa.index');
     }
 }

@@ -1,4 +1,3 @@
-
 @extends('component.layout')
 @section('body')
     <!-- Begin Page Content -->
@@ -90,11 +89,12 @@
                         <p>You can create more custom buttons by adding a new color variable in the
                             <code>_variables.scss</code> file and then using the Bootstrap button variant
                             mixin to create a new style, as demonstrated in the <code>_buttons.scss</code>
-                            file.</p>
+                            file.
+                        </p>
                         <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i>
                             .btn-google</a>
-                        <a href="#" class="btn btn-facebook btn-block"><i
-                                class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
+                        <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i>
+                            .btn-facebook</a>
 
                     </div>
                 </div>
@@ -111,7 +111,8 @@
                         <p>Works with any button colors, just use the <code>.btn-icon-split</code> class and
                             the markup in the examples below. The examples below also use the
                             <code>.text-white-50</code> helper class on the icons for additional styling,
-                            but it is not required.</p>
+                            but it is not required.
+                        </p>
                         <a href="#" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-flag"></i>
@@ -183,5 +184,5 @@
         </div>
 
     </div>
-<!-- End of Main Content -->
+    <!-- End of Main Content -->
 @endsection

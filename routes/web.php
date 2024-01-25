@@ -25,15 +25,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Route::get('feature/{uri}', function ($uri) {
-//     if ($uri == 'dashboard') {
-//         return view('index');
-//     } else if ($uri != 'dashboard') {
-//         return view($uri);
-//     } else {
-//         return view('404');
-//     }
-// });
+Route::get('feature/{uri}', function ($uri) {
+    if ($uri == 'dashboard') {
+        return view('index');
+    } else if ($uri != 'dashboard') {
+        return view($uri);
+    } else {
+        return view('404');
+    }
+});
 
 Route::resource('kategori', KategoriController2::class);
 
