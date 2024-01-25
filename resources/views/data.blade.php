@@ -1,6 +1,7 @@
 @extends('main.index')
 @section('body')
     @include('modal')
+    @include('konfirmasi')
     <div class='h-screen flex flex-col p-10 items-center w-full'>
         <h1 class='text-3xl font-semibold mb-0'>
             Daftar Mahasiswa
@@ -81,7 +82,8 @@
         }
 
         function hapus(id) {
-            window.location.href = `/mahasiswa/hapus/${id}`
+            openConfirmationModal('Konfirmasi Menghapus');
+            // window.location.href = `/mahasiswa/hapus/${id}`
         }
 
         const alertPopUp = document.querySelector('#myModal');

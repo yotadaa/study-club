@@ -1,4 +1,4 @@
-<div id="myModal" class="modal">
+<div id="myModal" class="modal hidden">
     <div class="h-screen w-screen fixed flex justify-center items-center" style='background-color: rgba(0,0,0,0.2)'>
 
         <div class='bg-white rounded-md shadow-xl relative w-72 h-20 flex flex-row items-center justify-center p-3'>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Models\Kategori;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
@@ -33,10 +34,7 @@ Route::get('feature/{uri}', function ($uri) {
     }
 });
 
-Route::get('kategori/semua', function () {
-    $kategori = Kategori::all();
-    return view('data', ['value' => $kategori]);
-});
+Route::get('kategori/semua', [KategoriController::class, 'semua']);
 
 Route::get('kategori/tambah', function () {
     Kategori::create([
@@ -73,18 +71,18 @@ Route::get('/mahasiswa', function () {
 });
 
 
-Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function($nim, $nama, $desk, $kelas) {
+Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function ($nim, $nama, $desk, $kelas) {
     $existingMahasiswa = Mahasiswa::where('nim', $nim)->first();
     if ($existingMahasiswa) {
         return view('mahasiswaExists');
     }
-        Mahasiswa::create([
+    Mahasiswa::create([
         "nim" => $nim,
         "nama" => $nama,
         "des" => $desk,
         "kelas" => $kelas
     ]);
-   return "
+    return "
 <script>
     window.location.href = '/mahasiswa';
 </script>
@@ -92,7 +90,7 @@ Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function($nim, $nama
 });
 
 
-Route::get('/mahasiswa/hapus/{id}', function($id){
+Route::get('/mahasiswa/hapus/{id}', function ($id) {
     return "
 <script>
     alert('$id');
