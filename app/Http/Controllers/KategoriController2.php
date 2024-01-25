@@ -22,10 +22,7 @@ class KategoriController2 extends Controller
      */
     public function create()
     {
-        Kategori::create([
-            "nama_kategori" => "Pakaian Baru",
-            "deskripsi" => "Semua jenis pakaian baru"
-        ]);
+
     }
 
     /**
@@ -34,6 +31,13 @@ class KategoriController2 extends Controller
     public function store(Request $request)
     {
         //
+        Kategori::create([
+            "nama_kategori" => $request->nama_kategori,
+            "deskripsi" => $request->deskripsi
+        ]);
+
+        return redirect()->route('kategori.index');
+
     }
 
     /**
