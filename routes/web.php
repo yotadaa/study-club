@@ -25,15 +25,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('feature/{uri}', function ($uri) {
-    if ($uri == 'dashboard') {
-        return view('index');
-    } else if ($uri != 'dashboard') {
-        return view($uri);
-    } else {
-        return view('404');
-    }
-});
+// Route::get('feature/{uri}', function ($uri) {
+//     if ($uri == 'dashboard') {
+//         return view('index');
+//     } else if ($uri != 'dashboard') {
+//         return view($uri);
+//     } else {
+//         return view('404');
+//     }
+// });
 
 Route::resource('kategori', KategoriController2::class);
 
@@ -66,36 +66,44 @@ Route::resource('kategori', KategoriController2::class);
 //     Kategori::find($id)->delete();
 // });
 
-Route::get('/mahasiswa', function () {
-    $mhs = Mahasiswa::all();
-    return view('data', ['mhs' => $mhs]);
-});
+// Route::get('/mahasiswa', function () {
+//     $mhs = Mahasiswa::all();
+//     return view('data', ['mhs' => $mhs]);
+// });
 
 
-Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function ($nim, $nama, $desk, $kelas) {
-    $existingMahasiswa = Mahasiswa::where('nim', $nim)->first();
-    if ($existingMahasiswa) {
-        return view('mahasiswaExists');
-    }
-    Mahasiswa::create([
-        "nim" => $nim,
-        "nama" => $nama,
-        "des" => $desk,
-        "kelas" => $kelas
-    ]);
-    return "
-<script>
-    window.location.href = '/mahasiswa';
-</script>
-   ";
-});
+// Route::get('/mahasiswa/tambah/{nim}_{nama}_{desk}_{kelas}', function ($nim, $nama, $desk, $kelas) {
+//     $existingMahasiswa = Mahasiswa::where('nim', $nim)->first();
+//     if ($existingMahasiswa) {
+//         return view('mahasiswaExists');
+//     }
+//     Mahasiswa::create([
+//         "nim" => $nim,
+//         "nama" => $nama,
+//         "des" => $desk,
+//         "kelas" => $kelas
+//     ]);
+//     return "
+// <script>
+//     window.location.href = '/mahasiswa';
+// </script>
+//    ";
+// });
 
 
-Route::get('/mahasiswa/hapus/{id}', function ($id) {
-    return "
-<script>
-    alert('$id');
-    window.location.href = '/mahasiswa';
-</script>
-    ";
-});
+// Route::get('/mahasiswa/hapus/{id}', function ($id) {
+//     return "
+// <script>
+//     alert('$id');
+//     window.location.href = '/mahasiswa';
+// </script>
+//     ";
+// });
+
+Route::get('/dashboard', function () {
+    return view('index');
+})->name('dashboard');
+
+use App\Http\Controllers\MahasiswaControllers;
+
+Route::resource('mahasiswa', MahasiswaControllers::class);
