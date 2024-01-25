@@ -2,7 +2,7 @@
     <div class='bg-white p-10 flex flex-col justify-center items-center rounded-md'>
         <div id='confirmation-text'>Ini adalah konfirmasi modal</div>
         <div class="flex mt-6 justify-around w-full">
-            <button onclick='closeConfirmatinModal()' class='bg-red-500 py-1 rounded-sm mr-2 px-5 font-semibold'>Batal</button>
+            <button onclick='closeConfirmationModal()' class='bg-red-500 py-1 rounded-sm mr-2 px-5 font-semibold'>Batal</button>
             <button class='bg-blue-500 py-1 rounded-sm ml-2 px-5 font-semibold'>Konfir</button>
         </div>
     </div>
