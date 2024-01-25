@@ -10,6 +10,8 @@
 </head>
 
 <body class=''>
+    
+    @include('component.navbar')
     @yield('body')
 </body>
 

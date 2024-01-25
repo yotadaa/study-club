@@ -1,5 +1,7 @@
-@extends('main.index')
+@extends('component.layout')
 @section('body')
+
+{{-- @vite('resources/css/app.css') --}}
     @include('modal')
     @include('konfirmasi')
     <div class='h-screen flex flex-col p-10 items-center w-full'>
@@ -11,15 +13,15 @@
                 <tr class="rounded-md">
                     <td>
                         <input id='nim' placeholder='NIM' type='text'
-                            class='border-none bg-gray-100 rounded-md focus:outline-none bg-none outline-none p-2' required>
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
                         <input id='nama' placeholder='Nama Mahasiswa' type='text'
-                            class='border-none bg-gray-100 rounded-md focus:outline-none bg-none outline-none p-2' required>
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
                         <input id='desk' placeholder='Deskripsi' type='text'
-                            class='border-none bg-gray-100 rounded-md focus:outline-none bg-none outline-none p-2' required>
+                            class='border-none bg-gray-100 rounded-sm focus:outline-none bg-none outline-none' required>
                     </td>
                     <td>
                         <input id='kelas' placeholder='Kelas' type='text'
@@ -27,7 +29,7 @@
                             required>
                     </td>
                     <td>
-                        <button class="p-2 flex items-center justify-center bg-emerald-500 shadow-md rounded-md px-4 p-2 rounded-md"
+                        <button class="p-2 flex items-center justify-center bg-emerald-500 shadow-md rounded-md px-4"
                             onclick='submitForm()'>
                             Tambah
                         </button>
@@ -83,7 +85,7 @@
 
         function hapus(id) {
             openConfirmationModal('Konfirmasi Menghapus');
-            window.location.href = `/mahasiswa/hapus/${id}`
+            // window.location.href = `/mahasiswa/hapus/${id}`
         }
 
         const alertPopUp = document.querySelector('#myModal');
