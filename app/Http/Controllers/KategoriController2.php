@@ -58,6 +58,9 @@ class KategoriController2 extends Controller
     public function edit(string $id)
     {
         //
+        $kategori = Kategori::find($id);
+        return view('editView', ['kategori' => $kategori]);
+
     }
 
     /**
@@ -67,9 +70,10 @@ class KategoriController2 extends Controller
     {
         //
         Kategori::find($id)->update([
-            'nama_kategori' => 'Pakaian Anak',
-            'deksripsi' => 'Semua jenis pakaian anak'
+            'nama_kategori' => $request->edit_nama_kategori,
+            'deksripsi' => $request->edit_deskripsi
         ]);
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -77,6 +81,7 @@ class KategoriController2 extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Kategori::find($id)->delete();
+        return redirect()->route('kategori.index');
     }
 }

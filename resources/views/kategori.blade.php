@@ -1,6 +1,7 @@
 @extends('main.index')
 @section('body')
 
+@include('detail')
 
 <div class='h-full m-10 flex p-10 items-start  mb-10'>
     <div class="justify-start">
@@ -32,15 +33,37 @@
                 <th class="p-2 ">ID</th>
                 <th class='w-32' >Nama kategori</th>
                 <th class=''>Keterangan</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
             </tr>
     
             @foreach ($kategori as $data)
+                @csrf
                 <tr class="mt-0 bg-blue-500 rounded-full hover:cursor-pointer text-white w-10 h-10 hover:opacity-80">
                     <td id='' class="p-2 text-center bg-emerald-500">
                         {{ $data->id }}
                     </td>
                     <td class='p-2'>{{ $data->nama_kategori }}</td>
-                    <td class='p-2'>{{ $data->deskripsi }}</td>
+                    <td class='p-2 text-wrap w-[300px]'>{{ $data->deskripsi }}</td>
+                    
+                    <form action="{{ route('kategori.edit', $data->id) }}" method='get'>
+                        @csrf
+                        <td class='p-2 px-4 bg-yellow-500 cursor-pointer text-white' >
+                            <input class="cursor-pointer" type='submit' value='Ubah' />
+                        </td>
+                    </form>
+                   
+                    <td class='p-2 px-4 bg-red-800 text-white cursor-pointer' >
+                        <form action="{{ route('kategori.destroy', $data->id) }}" method='post'>
+                            @csrf @method('delete')
+                            <input class="cursor-pointer" type='submit' value='Hapus' />
+                        </form>
+                    </td>
+
+                    <td id='' class="text-center bg-emerald-500">
+                        <button class='cursor-pointer p-2 px-3' onclick="openDetail({{$data->id}})">Detail</button>
+                    </td>
+                    
                 </tr>
             @endforeach
         </table>
