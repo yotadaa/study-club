@@ -1,6 +1,6 @@
 @extends('component.layout')
 
-@section('title', 'Tambah Data Mahasiswa')
+{{-- @section('title', 'Tambah Data Mahasiswa') --}}
 
 @section('body')
 

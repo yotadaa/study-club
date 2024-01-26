@@ -1,4 +1,4 @@
-@extends('component.layout');
+@extends('component.layout')
 @section('body')
     <div class="container-fluid">
 
