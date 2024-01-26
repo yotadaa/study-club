@@ -1,4 +1,4 @@
-<div id='confirmation-modal'
+<div id='delete-confirmation-modal'
     style="
         z-index:99999;
         display: none;
@@ -13,14 +13,14 @@
         <div class="card-header py-1">
             <h6 class="m-0 font-weight-bold text-primary mb-2 mt-2">Konfirmasi</h6>
         </div>
-        <div class="card-body">
-            <div id='confirmation-text' class="mb-4"></div>
+            <div class="card-body">
+            <div id='delete-confirmation-text' class="mb-4"></div>
             <div style='display: flex; width: 100%; justify-content: space-around; gap: 30px;'>
                 <a onclick="" class="btn btn-primary btn-icon-split">
                     <span id='confirmDelete' class="text">Konfir</span>
                 </a>
 
-                <a onclick="closeConfirmationModal()" class="btn btn-danger btn-icon-split">
+                <a onclick="closeDeleteConfirmationModal()" class="btn btn-danger btn-icon-split">
                     <span class="text">Batal</span>
                 </a>
             </div>
@@ -30,9 +30,9 @@
 </div>
 
 <script>
-    function openConfirmationModal(text, id) {
-        document.querySelector('#confirmation-text').textContent = text;
-        document.querySelector('#confirmation-modal').style.display = 'flex';
+    function openDeleteConfirmationModal(text, id) {
+        document.querySelector('#delete-confirmation-text').textContent = text;
+        document.querySelector('#delete-confirmation-modal').style.display = 'flex';
 
         document.querySelector('#confirmDelete').addEventListener('click', function() {
             console.log(id);
@@ -48,8 +48,8 @@
     }
 
 
-    function closeConfirmationModal() {
-        document.querySelector('#confirmation-modal').style.display = 'none';
+    function closeDeleteConfirmationModal() {
+        document.querySelector('#delete-confirmation-modal').style.display = 'none';
     }
 </script>
 </div>

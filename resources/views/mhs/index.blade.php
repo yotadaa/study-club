@@ -119,7 +119,7 @@
                                     </span>
                                     <span>
                                         <button
-                                            onclick="openConfirmationModal('Konfirmasi Menghapus {{ $data->nim }} ?',`{{ route('mahasiswa.destroy', $data->id) }}`)"
+                                            onclick="openDeleteConfirmationModal('Konfirmasi Menghapus {{ $data->nim }} ?',`{{ route('mahasiswa.destroy', $data->id) }}`)"
                                             class="btn btn-danger btn-icon-split shadow ">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>
