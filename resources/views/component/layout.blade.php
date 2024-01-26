@@ -29,13 +29,14 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     @yield('styles')
 
 </head>
 
 <body id="page-top">
-    @include('modal')
+    @include('mhs.modal')
     @include('konfirmasi')
     @include('mhs.edit')
     @yield('title')

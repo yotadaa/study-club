@@ -34,6 +34,9 @@
 
 @section('body')
     <script></script>
+    <script>
+        var mhs = @json($mhs)
+    </script>
     <div class="container-fluid">
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -108,7 +111,7 @@
                                     <span>
                                         <button
                                             onclick="openForm(`{{ route('mahasiswa.update', $data->id) }}`, '{{ $data->nim }}', '{{ $data->nama }}', '{{ $data->kelas }}', '{{ $data->des }}')"
-                                            class="btn btn-warning btn-icon-split">
+                                            class="btn btn-warning btn-icon-split shadow">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-info-circle"></i>
                                             </span>
@@ -118,7 +121,7 @@
                                     <span>
                                         <button
                                             onclick="openConfirmationModal('Konfirmasi Menghapus {{ $data->nim }} ?',`{{ route('mahasiswa.destroy', $data->id) }}`)"
-                                            class="btn btn-danger btn-icon-split">
+                                            class="btn btn-danger btn-icon-split shadow ">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>
                                             </span>

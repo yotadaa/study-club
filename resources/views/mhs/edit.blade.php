@@ -1,6 +1,4 @@
-<script>
-    var mhs = @json($mhs)
-</script>
+
 
 <div id='detail-form'
     style="
@@ -61,7 +59,20 @@
         if (!nimExists) {
             document.querySelector('#ubah-form').submit();
         } else {
-            openModal('Nim sudah terdaftar!')
+            openConfirmationModal('Nim sudah terdaftar!')
+        }
+    }
+
+    function changeState(state) {
+        document.querySelector("#nim").disabled = state
+        document.querySelector("#nama").disabled = state
+        document.querySelector("#kelas").disabled = state
+        document.querySelector("#des").disabled = state
+        if (currentState) {
+        document.querySelector("#confirmChange").style.display = 'none';
+
+        } else {
+            document.querySelector("#confirmChange").style.display = 'block';
         }
     }
 
@@ -78,21 +89,13 @@
 
     function allowEdit() {
         currentState = !currentState
-        console.log(currentState)
-        document.querySelector("#nim").disabled = currentState
-        document.querySelector("#nama").disabled = currentState
-        document.querySelector("#kelas").disabled = currentState
-        document.querySelector("#des").disabled = currentState
-        if (currentState) {
-            document.querySelector("#confirmChange").style.display = 'none';
-
-        } else {
-            document.querySelector("#confirmChange").style.display = 'block';
-        }
+        changeState(currentState)
     }
 
     function closeForm() {
         currentState = false;
+        changeState(!currentState)
         document.querySelector("#detail-form").style.display = 'none'
+        document.querySelector("#confirmChange").style.display = 'none';
     }
 </script>
