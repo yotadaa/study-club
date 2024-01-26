@@ -33,7 +33,6 @@
 @endsection
 
 @section('body')
-    <script></script>
     <script>
         var mhs = @json($mhs)
     </script>
